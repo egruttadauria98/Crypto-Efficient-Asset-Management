@@ -14,9 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from Markowitz.api.strategy import markowitz
+
+import Markowitz.api.strategy
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('compute-markowitz', include(markowitz)),
     #Define here the path of the api, maybe use a router
 ]
