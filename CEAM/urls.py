@@ -17,10 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 from Markowitz.api.strategy import markowitz
 
-import Markowitz.api.strategy
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('compute-markowitz', include(markowitz)),
+    path('compute-markowitz/', markowitz),
     #Define here the path of the api, maybe use a router
 ]
