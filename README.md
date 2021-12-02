@@ -2,7 +2,10 @@
 
 I suggest to use the editor pycharm, and I will illustrate how you can activate it with that one:
 
-1. First open pycharm and navigate into the progeject (I have assumed you have cloned the django server already).
+1. First open pycharm and navigate into the progeject (I have assumed you have cloned the django server already), and download the packages.
+```bash
+pip3 install -r requirements.txt
+```
 
 2. Navigate at the same level of the "manage.py" file and run the following line of code, that will activate the server locally for you at port 8000.
 
