@@ -15,7 +15,6 @@ def portfolio_optimization(list_coins='', return_rate=False, volatility=False, r
     if volatility!=False:
         max_sr=ef.efficient_volatility(volatility).reset_index().rename({"index":"Crypto"},axis=1)
 
-
-    data = {i: {'Name':max_sr.iloc[i,0], "Allocation":round(max_sr.iloc[i,1]*1000000)} for i in range(max_sr.shape[0])}
+    data = {max_sr.iloc[i, 0]: round(max_sr.iloc[i,1]*1000000) for i in range(max_sr.shape[0]) }
     return data
 
