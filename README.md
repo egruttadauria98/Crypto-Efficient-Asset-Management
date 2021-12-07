@@ -17,4 +17,6 @@ python3 manage.py runserver
 ```bash
 @GET, POST
 http:/127.0.0.1:8000/compute-markowitz/
-```
+
+IMPORTANT NOTE:
+Install manually the pandas and the FinQuant package. They're not inside the requirements.txt
