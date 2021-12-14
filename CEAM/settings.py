@@ -39,7 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Markowitz',
     'rest_framework'
+    'django-crontab'
 ]
+
+CRONJOBS = [
+    ('0 0 12 1 * ?', 'myapp.cron.my_scheduled_job') # '0 0 12 1 * ?' means on the first of every month at noon
+]
+#Usage of the CRONJOBS above:
+#python manage.py crontab add
+#python manage.py crontab show
+#python manage.py crontab remove
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
