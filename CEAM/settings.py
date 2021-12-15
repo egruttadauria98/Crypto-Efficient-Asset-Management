@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Markowitz',
-    'rest_framework'
-    'django-crontab'
+    'rest_framework',
+    'django_crontab'
 ]
 
 CRONJOBS = [
