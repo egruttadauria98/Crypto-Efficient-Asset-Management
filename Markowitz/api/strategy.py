@@ -4,31 +4,44 @@ from Markowitz.portfolio_opt import portfolio_optimization
 from pymongo import MongoClient
 from Markowitz.utils.database import save_to_db
 from datetime import datetime
+from decouple import config
 
-USERNAME = 'niccolodiana'
-PASSWORD = 'Crypt03fficient'
-ATLAS_CLUSTER = ''
-DATABASE = ''
-connection_string = f'mongodb+srv://{USERNAME}:{PASSWORD}@ceam.5b58n.mongodb.net/CEAM?retryWrites=true&w=majority'
+#Access the credential variables inside the environment file
+USERNAME = config('USERNAME')
+PASSWORD = config('PASSWORD')
 
-client = MongoClient(connection_string)
-db = client['db_name']
+
+def get_markowitz(coins):
+    result = portfolio_optimization(coins)
+
+    # Build the response that is going to be saved in the database
+    saved_instance = {
+        "timestamp": datetime.now(),
+        "allocation": result
+    }
+    save_to_db(saved_instance, username=USERNAME, password=PASSWORD, first_contact=False)
+    return result
+
 
 @api_view(http_method_names=['GET'])
 def markowitz(request):
-    if request.method == 'GET':
-        #TODO - Get the information of the contract, for future contract calls
 
-        #Run the Markowitz optimization over the selected bunch of coins
-        coins = request.GET.getlist('coins')
-        response = portfolio_optimization(coins)
+    #Run the Markowitz optimization over the selected bunch of coins
+    coins = request.GET.getlist('coins')
 
-        #Build the response that is going to be saved in the database
-        saved_instance = {
-            "timestamp": datetime.now(),
-            "allocation": response
-        }
-        save_to_db(saved_instance, first_contact = False)
+    #Get the result of markowitz and save them at db
+    response = get_markowitz(coins=coins)
 
-        #Return the structures response to the smart contract
-        return Response(portfolio_optimization(coins))
+    #Return the structures response to the smart contract
+    return Response(response)
+
+@api_view(http_method_names=['POST'])
+def address(request):
+    #TODO - Save the address to make future calls, getting them from the request object
+
+
+
+    #Get the markowitz for those coins
+    response = get_markowitz(coins)
+
+    return Response(response)

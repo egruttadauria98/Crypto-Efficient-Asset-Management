@@ -1,37 +1,31 @@
-from decouple import config
 from datetime import datetime
 from pymongo import MongoClient
 
-#Access the credential variables inside the environment file
-USERNAME = config('USERNAME')
-PASSWORD = config('PASSWORD')
-connection_string = f'mongodb+srv://{USERNAME}:{PASSWORD}@ceam.5b58n.mongodb.net/CEAM?retryWrites=true&w=majority'
-
-def save_to_db(item, first_contact = False):
+def save_to_db(item, username, password, first_contact = False):
     assert isinstance(item, dict)
+    connection_string = f'mongodb+srv://{username}:{password}@ceam.5b58n.mongodb.net/CEAM?retryWrites=true&w=majority'
     client = MongoClient(connection_string)
     dbname = client['CEAM']
 
     if first_contact:
-        #TODO - Save the address of the contacting contract inside the database
+        #TODO - Save the address of the contacting contract inside the database, structure data better
         addresses = dbname["contract_addresses"]
         addresses.insert_one(item)
     else:
-        #TODO - Save the latest portfolio optimization the algorithm has just computed
+        #Save the latest portfolio optimization the algorithm has just computed
         markowitz = dbname["markowitz"]
         markowitz.insert_one(item)
 
 
-client = MongoClient(connection_string)
-dbname = client['CEAM']
-markowitz = dbname["markowitz"]
+def retrieve_contract_infos(username, password):
+    connection_string = f'mongodb+srv://{username}:{password}@ceam.5b58n.mongodb.net/CEAM?retryWrites=true&w=majority'
+    client = MongoClient(connection_string)
+    dbname = client['CEAM']
 
-example1 = {
-    "timestamp": datetime.now(),
-    "allocation" : {
-        "ETH": 1000000,
-        "DOGE": 0 }
-    }
-
-#collection_name.insert_many([medicine_1,medicine_2])
-markowitz.insert_one(example1)
+    #TODO - From the dataset retrieve all the objects, get all unique contract ids, and call each contract in a loop
+    addresses = dbname["contract_addresses"]
+    addrs = list(addresses.find({}))
+    for addr in addrs:
+        addr['address']
+        pass
+    pass
