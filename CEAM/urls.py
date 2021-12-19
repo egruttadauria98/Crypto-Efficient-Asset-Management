@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from Markowitz.api.strategy import markowitz
+from Markowitz.api.strategy import
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('compute-markowitz/', markowitz),
+    path('register-contract', register_contract)
     #Define here the path of the api, maybe use a router
 ]

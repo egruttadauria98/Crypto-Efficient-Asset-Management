@@ -1,14 +1,17 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from Markowitz.portfolio_opt import portfolio_optimization
-from pymongo import MongoClient
 from Markowitz.utils.database import save_to_db
 from datetime import datetime
-from decouple import config
+import environ
+
+env = environ.Env()
+# reading .env file
+environ.Env.read_env()
 
 #Access the credential variables inside the environment file
-USERNAME = config('USERNAME')
-PASSWORD = config('PASSWORD')
+USERNAME = env('DB_USERNAME')
+PASSWORD = env('DB_PASSWORD')
 
 
 def get_markowitz(coins):
@@ -35,13 +38,3 @@ def markowitz(request):
     #Return the structures response to the smart contract
     return Response(response)
 
-@api_view(http_method_names=['POST'])
-def address(request):
-    #TODO - Save the address to make future calls, getting them from the request object
-
-
-
-    #Get the markowitz for those coins
-    response = get_markowitz(coins)
-
-    return Response(response)

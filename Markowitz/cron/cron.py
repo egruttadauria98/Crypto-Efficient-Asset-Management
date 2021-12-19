@@ -1,5 +1,10 @@
 from web3 import Web3
-from decouple import config
+import environ
+from Markowitz.utils.database import retrieve_all_contracts
+
+env = environ.Env()
+# reading .env file
+environ.Env.read_env()
 
 def cron_contracts_call():
     '''
@@ -7,13 +12,24 @@ def cron_contracts_call():
     :return:
     Response to be sent back to the smart contract, with the optimized version of the portfolio
     '''
-    #TODO - Query the address, abi, kovan_url
-    address = 'something'
-    ADDRESS = config('ADDRESS')
-    KOVAN = config('KOVAN')
-    ABI = config('ABI')
+    #TODO - The address needs to be queried from the database
+    ADDRESS = env('ADDRESS')
+    KOVAN = env('KOVAN')
+    ABI = env('ABI')
+    USERNAME = env('DB_USERNAME')
+    PASSWORD = env('DB_PASSWORD')
 
+    contract_addresses = retrieve_all_contracts(username=USERNAME, password= PASSWORD)
     w3 = Web3(Web3.HTTPProvider(KOVAN))
+    #TODO - Change the name of the activation function to something else, ask Elio
+
+    '''
+    #Uncomment this lines when ready to deploy the smart contracts and have them interact with the server
+    for ca in contract_addresses:
+        contract = w3.eth.contract(address=ca, abi=ABI)
+        response = contract.functions.activation_function().call()
+    '''
+
     contract = w3.eth.contract(address=ADDRESS, abi=ABI)
     response = contract.functions.activation_function().call()
     print(response)
