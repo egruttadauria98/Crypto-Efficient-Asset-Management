@@ -8,8 +8,8 @@ from dotenv import dotenv_values
 env = dotenv_values(".env")
 
 #Access the credential variables inside the environment file
-USERNAME = env['DB_USERNAME']
-PASSWORD = env['DB_PASSWORD']
+DB_USERNAME = 'niccolodiana'
+DB_PASSWORD = 'Crypt03fficient'
 
 
 def get_markowitz(coins):
@@ -20,7 +20,7 @@ def get_markowitz(coins):
         "timestamp": datetime.now(),
         "allocation": result
     }
-    save_to_db(saved_instance, username=USERNAME, password=PASSWORD, first_contact=False)
+    save_to_db(saved_instance, username=DB_USERNAME, password=DB_PASSWORD, first_contact=False)
     return result
 
 
