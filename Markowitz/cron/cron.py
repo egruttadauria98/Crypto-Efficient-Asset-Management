@@ -11,11 +11,11 @@ def cron_contracts_call():
     Response to be sent back to the smart contract, with the optimized version of the portfolio
     '''
     #TODO - The address needs to be queried from the database
-    ADDRESS = env('ADDRESS')
-    KOVAN = env('KOVAN')
-    ABI = env('ABI')
-    USERNAME = env('DB_USERNAME')
-    PASSWORD = env('DB_PASSWORD')
+    ADDRESS = env['ADDRESS']
+    KOVAN = env['KOVAN']
+    ABI = env['ABI']
+    USERNAME = env['DB_USERNAME']
+    PASSWORD = env['DB_PASSWORD']
 
     contract_addresses = retrieve_all_contracts(username=USERNAME, password= PASSWORD)
     w3 = Web3(Web3.HTTPProvider(KOVAN))

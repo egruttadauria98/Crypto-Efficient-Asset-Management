@@ -8,8 +8,8 @@ from dotenv import dotenv_values
 env = dotenv_values(".env")
 
 #Access the credential variables inside the environment file
-USERNAME = env('DB_USERNAME')
-PASSWORD = env('DB_PASSWORD')
+USERNAME = env['DB_USERNAME']
+PASSWORD = env['DB_PASSWORD']
 
 
 def get_markowitz(coins):
