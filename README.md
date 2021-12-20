@@ -49,6 +49,8 @@ Chronologically, the following events take place:
 - [@niko047](https://github.com/niko047)
 - [@aksoyarm](https://github.com/aksoyarm)
 - [@applebar17](https://github.com/applebar17)
+- [@rodolformelo](https://github.com/rodolformelo)
+- [@41ess4ndr0](https://github.com/41ess4ndr0)
 
 ## License
 
