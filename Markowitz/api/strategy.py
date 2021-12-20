@@ -3,11 +3,9 @@ from rest_framework.response import Response
 from Markowitz.portfolio_opt import portfolio_optimization
 from Markowitz.utils.database import save_to_db
 from datetime import datetime
-import environ
+from dotenv import dotenv_values
 
-env = environ.Env()
-# reading .env file
-environ.Env.read_env()
+env = dotenv_values(".env")
 
 #Access the credential variables inside the environment file
 USERNAME = env('DB_USERNAME')

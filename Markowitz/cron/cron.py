@@ -1,10 +1,8 @@
 from web3 import Web3
-import environ
 from Markowitz.utils.database import retrieve_all_contracts
+from dotenv import dotenv_values
 
-env = environ.Env()
-# reading .env file
-environ.Env.read_env()
+env = dotenv_values(".env")
 
 def cron_contracts_call():
     '''
@@ -26,7 +24,7 @@ def cron_contracts_call():
     '''
     #Uncomment this lines when ready to deploy the smart contracts and have them interact with the server
     for ca in contract_addresses:
-        contract = w3.eth.contract(address=ca, abi=ABI)
+        contract = w3.eth.contract(address=ca['contract_address'], abi=ABI)
         response = contract.functions.activation_function().call()
     '''
 
