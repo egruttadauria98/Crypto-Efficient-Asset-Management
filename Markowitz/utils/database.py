@@ -21,7 +21,7 @@ def is_existing_contract(address, username, password):
     client = MongoClient(connection_string)
     dbname = client['CEAM']
     addresses = dbname["contract_addresses"]
-    return True if addresses.find({"address": address}).count() > 0 else False
+    return True if addresses.find_one({"address": address}) is not None else False
 
 def retrieve_all_contracts(username, password):
     connection_string = f'mongodb+srv://{username}:{password}@ceam.5b58n.mongodb.net/CEAM?retryWrites=true&w=majority'
