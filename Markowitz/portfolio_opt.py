@@ -3,12 +3,13 @@ import datetime
 from finquant.portfolio import build_portfolio
 from finquant.efficient_frontier import EfficientFrontier
 
-def portfolio_optimization(list_coins, return_rate=False, volatility=False, risk_free=0.02, freq=30):
+def portfolio_optimization(list_coins, return_rate=False, volatility=False, risk_free=0.0232, freq=30):
     
     names = [s + '-USD'for s in list_coins]
-    start_date=(datetime.date.today() - datetime.timedelta(days = freq*2))
+    start_date=(datetime.date.today() - datetime.timedelta(days = freq*3))
     end_date = datetime.date.today()
     pf = build_portfolio(names=names, data_api="yfinance", start_date=start_date,end_date=end_date)
+    pf.data.dropna(axis=1,how='all',inplace=True)
     ef=EfficientFrontier(pf.comp_mean_returns(freq=1), pf.comp_cov(), risk_free_rate=risk_free, freq=freq)
     if return_rate==False and volatility==False:
         max_sr=ef.maximum_sharpe_ratio().reset_index().rename({"index":"Crypto"},axis=1)
