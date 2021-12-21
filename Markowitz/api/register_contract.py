@@ -7,6 +7,7 @@ DB_PASSWORD = 'Crypt03fficient'
 
 @api_view(http_method_names=['GET'])
 def address(request):
+    print(request.GET)
     contract_address = request.GET.get('contract-address') or None
     oracle_address = request.GET.get('oracle-address')
     response = {"status": 400}

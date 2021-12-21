@@ -21,6 +21,6 @@ from Markowitz.api.register_contract import address
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('compute-markowitz/', markowitz),
-    path('register-contract', address)
+    path('register-contract/', address)
     #Define here the path of the api, maybe use a router
 ]
