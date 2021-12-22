@@ -1,10 +1,14 @@
-# CEAM - Crypto Efficient Asset Management:
+# MARKO - Your Efficient Efficient Portfolio Managemer:
 
 This project is meant to implement the analogous of the Markowitz model for 
 the choice of an efficient portfolio (Markowitz, H.M. (March 1952). "Portfolio Selection"),
 but in the world of crypto assets. In particular, we focused our attention on the Ethereum blockchain,
 and the relative ERC20 tokens in the domain of the chain.
-## Django Quick Start - Local Testing
+
+Without further ado, let's jump into the quickstart:
+## MARKO - QuickStart
+
+## Django - Local Testing
 This part of the readme is meant to help with quickstart the Django HTTP server in order 
 to be able to initialize in it a RESTful API and **test** its endpoints. Note that
 in production this would not be done, as we host the server in a EC2 Amazon VM.
@@ -28,6 +32,23 @@ They both interact in turn with a MongoDB (NoSQL) database where information is 
 and can be retrieved for later awakenings of the contract.
 
 
+## Steps to full Completion
+
+Most Viable Product requirements:
+- [x] Coding of the Ethereum smart contract in solidity
+- [x] Creation of the HTTP Server and related Endpoints
+- [x] Creation of the NoSQL database in MongoDB
+- [x] Hosting the server in the WAN
+- [x] Coding of a toy exchange protocol in solidity
+- [x] Test the results
+---------------
+Production requirements (assuming the above are completed):
+- [ ] Adopt serious security protocols
+- [ ] Remove the limitation of 5 tokens max per portfolio
+- [ ] Minimize the fees paid by optimizing information exchange in calls
+- [ ] Integrate a true exchange in the process 
+- [ ] Deploy the contract outside of testing environments
+
 ## FAQ
 
 #### How does the information flow contract-server happen?
@@ -40,7 +61,10 @@ Chronologically, the following events take place:
 4. When answering, the *C* calls back *S* requesting an optimized version of the portfolio.
 5. *S* provides the response to the *C*, which updates its assets' allocation accordingly.
 
+#### I want to know more about MARKO and how it works.
 
+We got you covered, MARKO's whitepaper can be found in this same repository under the "White Paper" folter, in a pdf format. 
+It thoroughly dissects and explains MARKO's functionings without you having to go through the whole code to make sense of it.
 
 
 ## Authors
