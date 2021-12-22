@@ -26,6 +26,7 @@ contract OracleTest is ChainlinkClient {
 
     // CryptoFund variables
     string[] public tickers_of_portfolio;
+    string public risk_of_portfolio;
     address addressFund;
 
     // API requests starters
@@ -40,13 +41,32 @@ contract OracleTest is ChainlinkClient {
     // Mapping to keep track of address Oracle and CryptoFund
     mapping (string => address) public mapAddress;
 
+    string[] public total_token_list;
+
+    address owner;
+
+    modifier onlyOwner () {
+        require(msg.sender == owner, "This can only be called by the contract owner!");
+        _;
+     }
+
 
     constructor() {
+
+        owner = msg.sender;
+
         setPublicChainlinkToken();
         oracle = 0xc57B33452b4F7BB189bB5AfaE9cc4aBa1f7a4FD8;
         jobId = "d5270d1c311941d0b08bead21fea7747";
         //jobId2 = "493610cff14346f786f88ed791ab7704";
         fee = 0.1 * 10 ** 18; 
+
+        total_token_list.push("ETH");
+        total_token_list.push("USDT");
+        total_token_list.push("USDC");
+        total_token_list.push("ENJ");
+        total_token_list.push("BTC");
+        total_token_list.push("MANA"); 
     }
 
     // 1: General functions
@@ -65,6 +85,16 @@ contract OracleTest is ChainlinkClient {
         return tickers_of_portfolio;
     }
 
+    function getRiskFromFund() external returns(string memory){
+        CryptoFund fund = CryptoFund(addressFund);
+        risk_of_portfolio = fund.getRisk();
+        return risk_of_portfolio;
+    }
+
+    function getRisk() public view returns(string memory){
+        return risk_of_portfolio;
+    }
+
     function makeUrlOracle() public {
         for (uint i = 0; i < tickers_of_portfolio.length; i++) {
             if (i > 0) {
@@ -74,6 +104,8 @@ contract OracleTest is ChainlinkClient {
             url_request = string(abi.encodePacked(url_request, "coins="));
             url_request = string(abi.encodePacked(url_request, tickers_of_portfolio[i]));
         }
+        url_request = string(abi.encodePacked(url_request, "&risk="));
+        url_request = string(abi.encodePacked(url_request, risk_of_portfolio));
     }
     // -----------------
 
@@ -177,44 +209,60 @@ contract OracleTest is ChainlinkClient {
     }
     */
 
+    function compareStrings(string memory a, string memory b) public view returns (bool) {
+        return (keccak256(abi.encodePacked((a))) == keccak256(abi.encodePacked((b))));
+    }
+
+    function isCointained(string memory el, string[] memory arrayy) public returns(bool) {
+
+        bool found=false;
+        for (uint i=0; i<arrayy.length; i++) {
+            if(compareStrings(arrayy[i], el)){
+                found=true;
+                break;
+            }
+        }
+        return found;
+    }
+
+
     uint public j=0;
 
     function wakeupOracle() public {
-        ticker_dollar_pair = string(abi.encodePacked(tickers_of_portfolio[j], "-USD"));
-        extractSingleTicker(ticker_dollar_pair);
+        string memory current_token = total_token_list[j];
+
+        if (isCointained(current_token, tickers_of_portfolio)) {
+            ticker_dollar_pair = string(abi.encodePacked(tickers_of_portfolio[j], "-USD"));
+            extractSingleTicker(ticker_dollar_pair);
+        }
         j += 1;
     }
 
     function appendAPIresult() public {
-        api_result.push(response);
-    }
+        string memory current_token = total_token_list[j];
 
-
-    function wakeupOracle2() public {
-
-        // Extract the ticker of the i-th corresponding to the length of the api_result array
-        // If array is empty, then extract the result of the first tickers and insert it in the array
-        // If array.length is equal to the total number of tickers already, ignore any other call
-
-        uint i = api_result.length;
-        
-        if (i < tickers_of_portfolio.length) {
-            ticker_dollar_pair = string(abi.encodePacked(tickers_of_portfolio[i], "-USD"));
-            extractSingleTicker(ticker_dollar_pair);
-        } 
-    }
-
-    function appendAPIresult2() public {
-
-        uint i = api_result.length;
-        
-        if (i < tickers_of_portfolio.length) {
+        if (isCointained(current_token, tickers_of_portfolio)) {
             api_result.push(response);
+        } 
+        else {
+            api_result.push(0);
         }
     }
 
+    // Debugging function
+    function resetAPIresult() onlyOwner public {
+        delete api_result;
+    }
+
+
     function getApiResults() public view returns(uint[] memory) {
         return api_result;
+    }
+
+
+    function destroyContract() onlyOwner public payable {
+        address payable addr = payable(address(owner));
+        selfdestruct(addr);
     }
 
     // ------------------------------------------------------
