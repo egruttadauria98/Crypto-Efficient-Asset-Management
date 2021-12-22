@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
  
 
 contract Token1 is ERC20 {
-    constructor() ERC20("Gold", "GLD") { }
+    constructor() ERC20("Bocconi XXXX", "BXXX") { }
 
     function mint(address account, uint256 amount) public {
         _mint(account, amount);
