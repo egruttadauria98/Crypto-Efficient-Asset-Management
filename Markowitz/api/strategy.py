@@ -29,9 +29,10 @@ def markowitz(request):
 
     #Run the Markowitz optimization over the selected bunch of coins
     coins = request.GET.getlist('coins')
+    risk = request.GET.getlist('risk')
 
-    #Get the result of markowitz and save them at db
-    response = get_markowitz(coins=coins)
+    #Get the result of markowitz and save them at db, in case risk is not None, use it, else use default
+    response = get_markowitz(coins=coins, risk_free=risk) if risk else get_markowitz(coins=coins)
 
     #Return the structures response to the smart contract
     return Response(response)
