@@ -27,19 +27,20 @@ contract DEX {
         tokens_crypto.push(0x323B18fd3352e4D4a71284aCB65EAAC40205c546);
     }
 
-    address private swapAddress= 0x4D897B257766bBC0F4804A1D8710091D4099f88f; // Swap address contract
+    address private swapAddress= 0xeb7b9ED463cB5d1EA835Db00D26924F5946FAD5c; // Swap address contract
 
     function swap1() public {
         ISWAP(swapAddress).swapTokensToEther(msg.sender);
     }
 
     function swap2() public {
-        int[] memory share = new int[](5);
-        share[0] = 2000;
-        share[1] = 2000;
-        share[2] = 2000;
-        share[3] = 2000;
-        share[4] = 2000;
+        int[] memory share = new int[](6);
+        share[0] = 674074;
+        share[1] = 0;
+        share[2] = 0;
+        share[3] = 0;
+        share[4] = 45018;
+        share[5] = 280908;
         ISWAP(swapAddress).swapEtherToTokens(share,msg.sender);
     }
 
