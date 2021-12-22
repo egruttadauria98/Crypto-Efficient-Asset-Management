@@ -22,26 +22,24 @@ contract SWAP {
         tokens_crypto.push(0x8c67E632Af150673da2bEB27E63EF6189571934a); // Ether Bocconi
         tokens_crypto.push(0xF9449a9e80Ee0f5FDFd90e8024FDf693d0502Aed); // USDT Bocconi
         tokens_crypto.push(0x81F92C7FA7B76185Bae7Cd8013277B473739DD80); // USDC Bocconi
-        tokens_crypto.push(0x3E2A0e77e09Eeb4E2b7458412738cD4355c8B7B8); // LINK Bocconi
+        tokens_crypto.push(0x3E2A0e77e09Eeb4E2b7458412738cD4355c8B7B8); // ENJ Bocconi
         tokens_crypto.push(0x8001F795da74d3E947Bf9DcD1588c75eEB500bd5); // BTC Bocconi
-        tokens_crypto.push(0x323B18fd3352e4D4a71284aCB65EAAC40205c546); // BUSCD Bocconi
+        tokens_crypto.push(0x323B18fd3352e4D4a71284aCB65EAAC40205c546); // MANA Bocconi
 
         // DEFINING A MAP FOR LINK PRICE POOL BETWEEN REAL TOKENS AND ETHER
         // https://docs.chain.link/docs/ethereum-addresses/
         linkPool_tokens[tokens_crypto[1]] = 0x0bF499444525a23E7Bb61997539725cA2e928138; // POOL USDT/ETHER
         linkPool_tokens[tokens_crypto[2]] = 0x64EaC61A2DFda2c3Fa04eED49AA33D021AeC8838; // POOL USDC/ETHER
-        linkPool_tokens[tokens_crypto[3]] = 0x3Af8C569ab77af5230596Acf0E8c2F9351d24C38; // POOL LINK/ETHER
+        linkPool_tokens[tokens_crypto[3]] = 0xfaDbe2ee798889F02d1d39eDaD98Eff4c7fe95D4; // POOL ENJ/ETHER
         linkPool_tokens[tokens_crypto[4]] = 0xF7904a295A029a3aBDFFB6F12755974a958C7C25; // POOL BTC/ETHER
-        linkPool_tokens[tokens_crypto[5]] = 0xbF7A18ea5DE0501f7559144e702b29c55b055CcB; // POOL BTC/ETHER
+        linkPool_tokens[tokens_crypto[5]] = 0x1b93D8E109cfeDcBb3Cc74eD761DE286d5771511; // POOL MANA/ETHER
     }
 
-
+    // Connect with LINK PRICE POOL
     function _defPriceFeed(address _address) private {
         priceFeed = AggregatorV3Interface(_address);
     }
 
-    //** Function to Swap the 5 different tokens in Fake Ethers, just need to insert the address
-    //** Function to Swap the 5 different tokens in Fake Ethers, just need to insert the address
     //** Function to Swap the 5 different tokens in Fake Ethers, just need to insert the address
     function swapTokensToEther(address _address) public{
         // Creating an array of the balance of all fake tokens
@@ -87,7 +85,7 @@ contract SWAP {
     }
 
     function swapEtherToTokens(int[] memory share, address _address) public{
-        // Require that the share array be the same size of all tokens but the fake ether
+        // Require that the share array be the same size of all tokens 
 
         // Get the total amout of ether
         int numberEther = int(IERC20(tokens_crypto[0]).balanceOf(_address));
@@ -95,8 +93,8 @@ contract SWAP {
         // Number of Ether will be transferred for each token
         int[] memory totalToken = new int[](tokens_crypto.length);
 
-        for (uint i = 1; i < tokens_crypto.length; i++) {
-            totalToken[i] = int(share[i-1] * numberEther / (10 ** 4));
+        for (uint i = 0; i < tokens_crypto.length; i++) {
+            totalToken[i] = int(share[i] * numberEther / (10 ** 6));
         }
 
         //Calculate the total amount of ether
@@ -117,6 +115,8 @@ contract SWAP {
         }
         
         // Burn Fake Ether
+        // Update Final Amount of ether
+        numberEther = numberEther - totalToken[0];
         IERC20(tokens_crypto[0]).burn(_address,uint(numberEther));
 
         // Mint Fake Tokens
@@ -125,6 +125,7 @@ contract SWAP {
         }
     }
 
+    // Get LINK Exchange Price
     function _getLatestPrice() private view returns (int) {
         (
             uint80 roundID, 
