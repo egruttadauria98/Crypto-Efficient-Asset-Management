@@ -43,7 +43,8 @@ INSTALLED_APPS = [
 ]
 
 CRONJOBS = [
-    ('0 0 12 1 * ?', 'myapp.cron.my_scheduled_job') # '0 0 12 1 * ?' means on the first of every month at noon
+    ('0 0 12 1 * ?', 'myapp.cron.my_scheduled_job'), # '0 0 12 1 * ?' means on the first of every month at noon
+    ('* * * * *', 'Markowitz.cron.cron.oracle_wakeup')
 ]
 #Usage of the CRONJOBS above:
 #python manage.py crontab add
