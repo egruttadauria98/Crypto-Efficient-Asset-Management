@@ -12,6 +12,7 @@ and the relative ERC20 tokens in the domain of the chain. This simply sketch rep
 
 Without further ado, let's jump into the quickstart:
 ## MARKO - QuickStart
+To be completed with an illustrative video. Coming soon
 
 ## Django - Local Testing
 This part of the readme is meant to help with quickstart the Django HTTP server in order 
