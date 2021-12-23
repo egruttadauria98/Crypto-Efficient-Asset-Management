@@ -1,0 +1,18 @@
+@POST
+192.168.1.100:8000/created_contract
+
+/* INPUT FORMAT at start */
+{
+  "coins" : ["coin_1", "coin_2"]
+}
+
+/*
+Django cron once every x days to call out the contract.
+*/
+
+/* OUTPUT FORMAT
+Must sum to 1000000 */
+{
+  "coin_0": 1000000,
+  "coin_1":
+}
