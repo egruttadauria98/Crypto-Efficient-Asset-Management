@@ -1,6 +1,7 @@
 # MARKO - Your Efficient Efficient Portfolio Managemer:
 
 ![](images/Marko1.png)
+<img src="https://github.com/egruttadauria98/Crypto-Efficient-Asset-Management/blob/main/images/Marko1.png" width=300 height=300>
 
 This project is meant to implement the analogous of the Markowitz model for 
 the choice of an efficient portfolio (Markowitz, H.M. (March 1952). "Portfolio Selection"),
