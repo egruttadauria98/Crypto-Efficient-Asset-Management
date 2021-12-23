@@ -12,8 +12,8 @@ DB_USERNAME = 'niccolodiana'
 DB_PASSWORD = 'Crypt03fficient'
 
 
-def get_markowitz(coins):
-    result = portfolio_optimization(coins)
+def get_markowitz(coins, volatility=False):
+    result = portfolio_optimization(coins, volatility= volatility)
 
     # Build the response that is going to be saved in the database
     saved_instance = {

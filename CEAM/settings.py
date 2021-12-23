@@ -41,12 +41,12 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_crontab'
 ]
-
+#('',
 CRONJOBS = [
-    ('0 0 12 1 * ?', 'myapp.cron.my_scheduled_job'), # '0 0 12 1 * ?' means on the first of every month at noon
-    ('* * * * *', 'Markowitz.cron.cron.oracle_wakeup')
+    ('0 0 12 1 * ?', 'Markowitz.cron.cron.oracle_wakeup')
 ]
-#Usage of the CRONJOBS above:
+CRONTAB_COMMAND_SUFFIX = '2>/home/ubuntu/Crypto-Efficient-Asset-Management/error_log.txt 1>/home/ubuntu/Crypto-Efficient-Asset-Management/normal_log.txt'
+#''Usage of the CRONJOBS above:
 #python manage.py crontab add
 #python manage.py crontab show
 #python manage.py crontab remove
