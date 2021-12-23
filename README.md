@@ -19,6 +19,7 @@ This part of the readme is meant to help with quickstart the Django HTTP server 
 to be able to initialize in it a RESTful API and **test** its endpoints. Note that
 in production this would not be done, as we host the server in a EC2 Amazon VM.
 In such a way our API would be exposed to the WAN and reachable by the contracts living in the ethereum blockchain.
+To call the running server, check out the addresses of our VM hosting the server and endpoint routes, both provided inside the White Paper.
 
 To quick start the project locally (at localhost), 
 a bash file has been written and it needs to be called in the main directory
