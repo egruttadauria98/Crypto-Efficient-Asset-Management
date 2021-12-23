@@ -84,7 +84,9 @@ It thoroughly dissects and explains MARKO's functionings without you having to g
 - [@rodolformelo](https://github.com/rodolformelo)
 - [@41ess4ndr0](https://github.com/41ess4ndr0)
 
-<img src="https://github.com/egruttadauria98/Crypto-Efficient-Asset-Management/blob/main/images/Powered_by.png" height=170 width=700 align="center">
+<div align="center">
+  <img src="https://github.com/egruttadauria98/Crypto-Efficient-Asset-Management/blob/main/images/Powered_by.png" height=170 width=700 align="center">
+</div>
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
