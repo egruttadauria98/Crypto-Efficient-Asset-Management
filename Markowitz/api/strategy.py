@@ -32,7 +32,7 @@ def markowitz(request):
     risk = request.GET.getlist('risk')
 
     #Get the result of markowitz and save them at db, in case risk is not None, use it, else use default
-    response = get_markowitz(coins=coins, volatility=risk) if risk else get_markowitz(coins=coins)
+    response = get_markowitz(coins=coins, volatility=round(risk/100000, 4)) if risk else get_markowitz(coins=coins)
 
     #Return the structures response to the smart contract
     return Response(response)
