@@ -6,7 +6,7 @@ the choice of an efficient portfolio (Markowitz, H.M. (March 1952). "Portfolio S
 but in the world of crypto assets. In particular, we focused our attention on the Ethereum blockchain,
 and the relative ERC20 tokens in the domain of the chain. This simply sketch represents MARKO's architecture.
 
-<img src="https://github.com/egruttadauria98/Crypto-Efficient-Asset-Management/blob/main/images/Marko1.png" width=600 height=450>
+<img src="https://github.com/egruttadauria98/Crypto-Efficient-Asset-Management/blob/main/images/Marko1.png" width=600 height=450 align="center">
 
 
 Without further ado, let's jump into the quickstart:
@@ -83,7 +83,7 @@ It thoroughly dissects and explains MARKO's functionings without you having to g
 - [@rodolformelo](https://github.com/rodolformelo)
 - [@41ess4ndr0](https://github.com/41ess4ndr0)
 
-<img src="https://github.com/egruttadauria98/Crypto-Efficient-Asset-Management/blob/main/images/Powered_by.png" height=170 width=700>
+<img src="https://github.com/egruttadauria98/Crypto-Efficient-Asset-Management/blob/main/images/Powered_by.png" height=170 width=700 align="center">
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
