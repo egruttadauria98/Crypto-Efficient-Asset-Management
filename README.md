@@ -50,6 +50,9 @@ Production requirements (assuming the above are completed):
 - [ ] Minimize the fees paid by optimizing information exchange in calls
 - [ ] Integrate a true exchange in the process 
 - [ ] Deploy the contract outside of testing environments
+- [ ] MARKO's own database for timeseries data on crypto prices
+- [ ] Integration of BalancerAMM
+- [ ] Production testing
 
 ## FAQ
 
