@@ -5,8 +5,9 @@ This project is meant to implement the analogous of the Markowitz model for
 the choice of an efficient portfolio (Markowitz, H.M. (March 1952). "Portfolio Selection"),
 but in the world of crypto assets. In particular, we focused our attention on the Ethereum blockchain,
 and the relative ERC20 tokens in the domain of the chain. This simply sketch represents MARKO's architecture.
-
-<img src="https://github.com/egruttadauria98/Crypto-Efficient-Asset-Management/blob/main/images/Marko1.png" width=600 height=450 align="center">
+<div align="center">
+  <img src="https://github.com/egruttadauria98/Crypto-Efficient-Asset-Management/blob/main/images/Marko1.png" width=600 height=450 >
+</div>
 
 
 Without further ado, let's jump into the quickstart:
