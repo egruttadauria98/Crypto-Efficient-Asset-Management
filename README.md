@@ -31,7 +31,7 @@ python manage.py runserver      #start the server locally (127.0.0.1)
 
 The server will allow the following endpoints, declared in Markowitz/api/strategy.py :
 - http://127.0.0.1/compute-markowitz/       @GET
-- http://127.0.0.1/register-contract/       @POST
+- http://127.0.0.1/register-contract/       @GET
 
 They both interact in turn with a MongoDB (NoSQL) database where information is stored
 and can be retrieved for later awakenings of the contract.
