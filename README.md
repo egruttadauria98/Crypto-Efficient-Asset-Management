@@ -1,6 +1,6 @@
 # MARKO - Your Efficient Efficient Portfolio Managemer:
 
-![](images/Marko1.png){:height="50%" width="50%"}
+![](images/Marko1.png)
 
 This project is meant to implement the analogous of the Markowitz model for 
 the choice of an efficient portfolio (Markowitz, H.M. (March 1952). "Portfolio Selection"),
